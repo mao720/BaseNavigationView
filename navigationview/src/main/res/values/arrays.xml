@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="navigation_tabs_name">
+        <item>@string/app_name</item>
+        <item>@string/app_name</item>
+        <item>@string/app_name</item>
+        <item>@string/app_name</item>
+    </string-array>
+    <string-array name="navigation_tabs_ic_dark">
+        <item>@android:drawable/ic_delete</item>
+        <item>@android:drawable/ic_delete</item>
+        <item>@android:drawable/ic_delete</item>
+        <item>@android:drawable/ic_delete</item>
+    </string-array>
+    <string-array name="navigation_tabs_ic_light">
+        <item>@android:drawable/ic_dialog_alert</item>
+        <item>@android:drawable/ic_dialog_alert</item>
+        <item>@android:drawable/ic_dialog_alert</item>
+        <item>@android:drawable/ic_dialog_alert</item>
+    </string-array>
+</resources>
