@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BaseNavigationView" >
+        <attr name="autoLayoutEnabled" format="boolean" />
+        <attr name="selectedColor" format="reference" />
+        <attr name="unselectedColor" format="reference" />
+        <attr name="tabNames" format="reference" />
+        <attr name="tabTextSize" format="dimension" />
+        <attr name="tabIcArraysSelected" format="reference" />
+        <attr name="tabIcArraysUnselected" format="reference" />
+        <attr name="tabTextPadding" format="dimension" />
+        <attr name="tabTextPaddingTop" format="dimension" />
+        <attr name="tabTextPaddingBottom" format="dimension" />
+        <attr name="tabIcPadding" format="dimension" />
+        <attr name="tabIcPaddingTop" format="dimension" />
+        <attr name="tabIcPaddingBottom" format="dimension" />
+    </declare-styleable>
+</resources>

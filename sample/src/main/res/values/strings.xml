@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Sample</string>
+    <string name="tab_one">风</string>
+    <string name="tab_two">林</string>
+    <string name="tab_three">火</string>
+    <string name="tab_four">山</string>
 </resources>

@@ -1,23 +1,25 @@
 /**
-  * Copyright 2017 JessYan
-  *
-  * Licensed under the Apache License, Version 2.0 (the "License");
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  *      http://www.apache.org/licenses/LICENSE-2.0
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an "AS IS" BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
+ * Copyright 2017 JessYan
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.mjf.navigationview;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+
+import com.zhy.autolayout.utils.AutoUtils;
 
 /**
  * ================================================
@@ -28,9 +30,9 @@ import android.content.res.TypedArray;
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  * ================================================
  */
-public class ArmsUtils {
+public class Utils {
 
-    private ArmsUtils() {
+    private Utils() {
         throw new IllegalStateException("you can't instantiate me!");
     }
 
@@ -42,14 +44,14 @@ public class ArmsUtils {
     }
 
     /**
-     * 得到字符数组
+     * 获得字符数组
      */
     public static String[] getStringArray(Context context, int id) {
         return getResources(context).getStringArray(id);
     }
 
     /**
-     * 得到资源id数组
+     * 获得资源id数组
      */
     public static int[] getResIdsArray(Context context, int id) {
         TypedArray ar = getResources(context).obtainTypedArray(id);
@@ -61,4 +63,11 @@ public class ArmsUtils {
         return resIds;
     }
 
+    public static int getAutoWidth(boolean autoLayoutEnabled, int width) {
+        return autoLayoutEnabled ? AutoUtils.getPercentWidthSize(width) : width;
+    }
+
+    public static int getAutoHeight(boolean autoLayoutEnabled, int height) {
+        return autoLayoutEnabled ? AutoUtils.getPercentHeightSize(height) : height;
+    }
 }

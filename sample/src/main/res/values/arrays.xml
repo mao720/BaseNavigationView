@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="navigation_tab_names">
+        <item>@string/tab_one</item>
+        <item>@string/tab_two</item>
+        <item>@string/tab_three</item>
+        <item>@string/tab_four</item>
+    </string-array>
+    <string-array name="navigation_tab_ics_dark">
+        <item>@drawable/ic_tab_one_dark</item>
+        <item>@drawable/ic_tab_two_dark</item>
+        <item>@drawable/ic_tab_three_dark</item>
+        <item>@drawable/ic_tab_four_dark</item>
+    </string-array>
+    <string-array name="navigation_tab_ics_light">
+        <item>@drawable/ic_tab_one_light</item>
+        <item>@drawable/ic_tab_two_light</item>
+        <item>@drawable/ic_tab_three_light</item>
+        <item>@drawable/ic_tab_four_light</item>
+    </string-array>
+</resources>
