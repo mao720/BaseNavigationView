@@ -29,15 +29,15 @@ public class BaseNavigationView extends LinearLayout {
     private int tabSelectedColorId;
     private int tabUnselectedColorId;
     private String[] tabNames;
-    private int tabTextSize;
     private int[] tabIcsLight;
     private int[] tabIcsDark;
-    private int tabIcPadding;
-    private int tabIcPaddingTop;
-    private int tabIcPaddingBottom;
-    private int tabTextPadding;
-    private int tabTextPaddingTop;
-    private int tabTextPaddingBottom;
+    private int tabTextSize = -1;
+    private int tabIcPadding = -1;
+    private int tabIcPaddingTop = -1;
+    private int tabIcPaddingBottom = -1;
+    private int tabTextPadding = -1;
+    private int tabTextPaddingTop = -1;
+    private int tabTextPaddingBottom = -1;
 
 
     private OnNavigationItemSelectedListener listener;
@@ -61,25 +61,25 @@ public class BaseNavigationView extends LinearLayout {
             if (itemId == R.styleable.BaseNavigationView_autoLayoutEnabled) {
                 autoLayoutEnabled = a.getBoolean(itemId, false);
             } else if (itemId == R.styleable.BaseNavigationView_selectedColor) {
-                tabSelectedColorId = a.getResourceId(itemId, -1);
+                tabSelectedColorId = a.getResourceId(itemId, 0);
             } else if (itemId == R.styleable.BaseNavigationView_unselectedColor) {
-                tabUnselectedColorId = a.getResourceId(itemId, -1);
+                tabUnselectedColorId = a.getResourceId(itemId, 0);
             } else if (itemId == R.styleable.BaseNavigationView_tabNames) {
-                tabNames = Utils.getStringArray(this.getContext(), a.getResourceId(itemId, -1));
+                tabNames = Utils.getStringArray(this.getContext(), a.getResourceId(itemId, 0));
             } else if (itemId == R.styleable.BaseNavigationView_tabTextSize) {
-                tabTextSize = a.getDimensionPixelSize(itemId, -1);
+                tabTextSize = a.getDimensionPixelSize(itemId, 0);
             } else if (itemId == R.styleable.BaseNavigationView_tabIcArraysSelected) {
-                tabIcsLight = Utils.getResIdsArray(this.getContext(), a.getResourceId(itemId, -1));
+                tabIcsLight = Utils.getResIdsArray(this.getContext(), a.getResourceId(itemId, 0));
             } else if (itemId == R.styleable.BaseNavigationView_tabIcArraysUnselected) {
-                tabIcsDark = Utils.getResIdsArray(this.getContext(), a.getResourceId(itemId, -1));
+                tabIcsDark = Utils.getResIdsArray(this.getContext(), a.getResourceId(itemId, 0));
             } else if (itemId == R.styleable.BaseNavigationView_tabIcPadding) {
-                tabIcPadding = a.getDimensionPixelSize(itemId, -1);
+                tabIcPadding = a.getDimensionPixelSize(itemId, 0);
             } else if (itemId == R.styleable.BaseNavigationView_tabIcPaddingTop) {
                 tabIcPaddingTop = a.getDimensionPixelSize(itemId, 0);
             } else if (itemId == R.styleable.BaseNavigationView_tabIcPaddingBottom) {
                 tabIcPaddingBottom = a.getDimensionPixelSize(itemId, 0);
             } else if (itemId == R.styleable.BaseNavigationView_tabTextPadding) {
-                tabTextPadding = a.getDimensionPixelSize(itemId, -1);
+                tabTextPadding = a.getDimensionPixelSize(itemId, 0);
             } else if (itemId == R.styleable.BaseNavigationView_tabTextPaddingTop) {
                 tabTextPaddingTop = a.getDimensionPixelSize(itemId, 0);
             } else if (itemId == R.styleable.BaseNavigationView_tabTextPaddingBottom) {
@@ -96,6 +96,8 @@ public class BaseNavigationView extends LinearLayout {
         if (tabNames == null || tabNames.length <= 0) {
             return;
         }
+        tabSelectedColorId = tabSelectedColorId == 0 ? android.R.color.white : tabSelectedColorId;
+        tabUnselectedColorId = tabUnselectedColorId == 0 ? android.R.color.black : tabUnselectedColorId;
         for (int i = 0; i < tabNames.length; i++) {
             LinearLayout tab = (LinearLayout) LayoutInflater
                     .from(this.getContext())
@@ -115,22 +117,22 @@ public class BaseNavigationView extends LinearLayout {
             //文字默认颜色
             tvTabName.setTextColor(getResources().getColor(tabUnselectedColorId));
             //文字padding
-            if (tabTextPadding == -1) {
+            if (tabTextPadding != -1) {
+                int autoPadding = Utils.getAutoHeight(autoLayoutEnabled, tabTextPadding);
+                tvTabName.setPadding(autoPadding, autoPadding, autoPadding, autoPadding);
+            } else if (tabTextPaddingTop != -1 || tabTextPaddingBottom != -1) {
                 tvTabName.setPadding(0, Utils.getAutoHeight(autoLayoutEnabled, tabTextPaddingTop),
                         0, Utils.getAutoHeight(autoLayoutEnabled, tabTextPaddingBottom));
-            } else {
-                int autoHeight = Utils.getAutoHeight(autoLayoutEnabled, tabTextPadding);
-                tvTabName.setPadding(autoHeight, autoHeight, autoHeight, autoHeight);
             }
             //图标默认图片
             ivTabIc.setImageResource(tabIcsDark[i]);
             //图标padding
-            if (tabIcPadding == -1) {
+            if (tabIcPadding != -1) {
+                int autoPadding = Utils.getAutoHeight(autoLayoutEnabled, tabIcPadding);
+                ivTabIc.setPadding(autoPadding, autoPadding, autoPadding, autoPadding);
+            } else if (tabIcPaddingTop != -1 || tabIcPaddingBottom != -1) {
                 ivTabIc.setPadding(0, Utils.getAutoHeight(autoLayoutEnabled, tabIcPaddingTop),
                         0, Utils.getAutoHeight(autoLayoutEnabled, tabIcPaddingBottom));
-            } else {
-                int autoHeight = Utils.getAutoHeight(autoLayoutEnabled, tabIcPadding);
-                ivTabIc.setPadding(autoHeight, autoHeight, autoHeight, autoHeight);
             }
             final int position = i;
             //设置tab点击事件
