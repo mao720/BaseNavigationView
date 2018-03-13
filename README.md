@@ -5,6 +5,7 @@ BaseNavigationView，快速实现可配置的底部导航栏
   compile 'com.mjf:basenavigationview:1.0.2'
 
 配置方法：
+
   1.在布局中引入BaseNavigationView
 
       <com.mjf.navigationview.BaseNavigationView
@@ -21,6 +22,27 @@ BaseNavigationView，快速实现可配置的底部导航栏
           app:tabIcPadding="10px"
           app:tabTextPaddingBottom="10px"
           app:layout_constraintBottom_toBottomOf="parent" />
+          
+  2.编辑values/arrays文件
+  
+      <string-array name="navigation_tab_names">
+          <item>@string/tab_one</item>
+          <item>@string/tab_two</item>
+          <item>@string/tab_three</item>
+          <item>@string/tab_four</item>
+      </string-array>
+      <string-array name="navigation_tab_ics_dark">
+          <item>@drawable/ic_tab_one_dark</item>
+          <item>@drawable/ic_tab_two_dark</item>
+          <item>@drawable/ic_tab_three_dark</item>
+          <item>@drawable/ic_tab_four_dark</item>
+      </string-array>
+      <string-array name="navigation_tab_ics_light">
+          <item>@drawable/ic_tab_one_light</item>
+          <item>@drawable/ic_tab_two_light</item>
+          <item>@drawable/ic_tab_three_light</item>
+          <item>@drawable/ic_tab_four_light</item>
+      </string-array>
 
 API：
 
