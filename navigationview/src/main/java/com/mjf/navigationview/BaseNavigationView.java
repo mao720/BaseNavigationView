@@ -101,7 +101,7 @@ public class BaseNavigationView extends LinearLayout {
         for (int i = 0; i < tabNames.length; i++) {
             LinearLayout tab = (LinearLayout) LayoutInflater
                     .from(this.getContext())
-                    .inflate(R.layout.item_navigation_tab, null);
+                    .inflate(R.layout.item_navigation_tab, this, false);
             tab.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT,
