@@ -91,7 +91,9 @@ public class BaseNavigationView extends LinearLayout {
     }
 
     private void initView() {
-        new AutoLayoutHelper(this);
+        if (autoLayoutEnabled) {
+            new AutoLayoutHelper(this);
+        }
         tabs = new ArrayList<>();
         if (tabNames == null || tabNames.length <= 0) {
             return;
@@ -161,15 +163,11 @@ public class BaseNavigationView extends LinearLayout {
             listener.onNavigationItemSelected(tabs.get(position), position);
         }
         //移除上一个选中的tab
-        ImageView ivSelectTabIc = tabs.get(selectPosition).findViewById(R.id.iv_tab_ic);
-        TextView tvSelectTabName = tabs.get(selectPosition).findViewById(R.id.tv_tab_name);
-        ivSelectTabIc.setImageResource(tabIcsDark[selectPosition]);
-        tvSelectTabName.setTextColor(getResources().getColor(tabUnselectedColorId));
+        changeIcon(selectPosition, tabIcsDark[selectPosition]);
+        changeTextColor(selectPosition, tabUnselectedColorId);
         //将此次点击的tab选中
-        ImageView ivTabIc = tabs.get(position).findViewById(R.id.iv_tab_ic);
-        TextView tvTabName = tabs.get(position).findViewById(R.id.tv_tab_name);
-        ivTabIc.setImageResource(tabIcsLight[position]);
-        tvTabName.setTextColor(getResources().getColor(tabSelectedColorId));
+        changeIcon(position, tabIcsLight[position]);
+        changeTextColor(position, tabSelectedColorId);
         //记录选中的tab位置
         selectPosition = position;
     }
@@ -180,6 +178,78 @@ public class BaseNavigationView extends LinearLayout {
                 Utils.getAutoHeight(autoLayoutEnabled, top),
                 Utils.getAutoWidth(autoLayoutEnabled, right),
                 Utils.getAutoHeight(autoLayoutEnabled, bottom));
+    }
+
+    /**
+     * 设置选中和未选中时的图标
+     */
+    public void setTabIcons(int tabSelectedIconsId, int tabUnselectedIconsId) {
+        setTabSelectedIcons(tabSelectedIconsId);
+        setTabUnselectedIcons(tabUnselectedIconsId);
+    }
+
+    /**
+     * 设置选中时的图标
+     */
+    public void setTabSelectedIcons(int tabSelectedIconsId) {
+        tabIcsLight = Utils.getResIdsArray(this.getContext(), tabSelectedIconsId);
+        changeIcon(selectPosition, tabIcsLight[selectPosition]);
+    }
+
+    /**
+     * 设置未选中时的图标
+     */
+    public void setTabUnselectedIcons(int tabUnselectedIconsId) {
+        tabIcsDark = Utils.getResIdsArray(this.getContext(), tabUnselectedIconsId);
+        for (int i = 0; i < tabs.size(); i++) {
+            if (i != selectPosition) {
+                changeIcon(i, tabIcsDark[i]);
+            }
+        }
+    }
+
+    /**
+     * 设置文字选中和未选中时的颜色
+     */
+    public void setTextColor(int textSelectedColorId, int textUnselectedColorId) {
+        setTextSelectedColorId(textSelectedColorId);
+        setTextUnselectedColorId(textUnselectedColorId);
+    }
+
+    /**
+     * 设置文字选中时的颜色
+     */
+    public void setTextSelectedColorId(int color) {
+        tabSelectedColorId = color;
+        changeTextColor(selectPosition, color);
+    }
+
+    /**
+     * 设置文字未选中时的颜色
+     */
+    public void setTextUnselectedColorId(int color) {
+        tabUnselectedColorId = color;
+        for (int i = 0; i < tabs.size(); i++) {
+            if (i != selectPosition) {
+                changeTextColor(i, color);
+            }
+        }
+    }
+
+    /**
+     * 改变position位置的文字color
+     */
+    public void changeTextColor(int position, int tabTextColorId) {
+        TextView tvSelectTabName = tabs.get(position).findViewById(R.id.tv_tab_name);
+        tvSelectTabName.setTextColor(getResources().getColor(tabTextColorId));
+    }
+
+    /**
+     * 改变position位置的icon
+     */
+    public void changeIcon(int position, int tabIconId) {
+        ImageView ivSelectTabIc = tabs.get(position).findViewById(R.id.iv_tab_ic);
+        ivSelectTabIc.setImageResource(tabIconId);
     }
 
     public void setOnNavigationItemSelectedListener(OnNavigationItemSelectedListener listener) {
