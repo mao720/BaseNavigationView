@@ -2,7 +2,7 @@
 BaseNavigationView，快速实现可配置的底部导航栏
 
 导入项目：
-  compile 'com.mjf:basenavigationview:1.0.2'
+  compile 'com.mjf:basenavigationview:1.1.0'
 
 配置方法：
 
@@ -46,7 +46,14 @@ BaseNavigationView，快速实现可配置的底部导航栏
 
 API：
 
-  1.changeTabIcPadding(int position, int left, int top, int right, int bottom)
-    改变指定位置图标的padding值。
-  2.setOnNavigationItemSelectedListener(OnNavigationItemSelectedListener listener)
-    设置图标点击监听
+>1.changeTabIcPadding(int position, int left, int top, int right, int bottom)
+>>改变指定位置图标的padding值。
+
+>2.setOnNavigationItemSelectedListener(OnNavigationItemSelectedListener listener)
+>>设置图标点击监听。
+
+>3.setTextColor(int textSelectedColorId, int textUnselectedColorId)
+>>设置文字选中和未选中时的颜色。
+
+>4.public void setTabIcons(int tabSelectedIconsId, int tabUnselectedIconsId)
+>>设置选中和未选中时的图标。
